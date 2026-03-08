@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const stats = [
   { value: "101", label: "countries" },
   { value: "104", label: "languages" },
@@ -9,8 +11,16 @@ const StatsMarquee = () => {
   const items = [...stats, ...stats, ...stats, ...stats];
 
   return (
-    <section className="py-8 bg-accent overflow-hidden">
-      <div className="flex animate-marquee whitespace-nowrap">
+    <section className="py-8 bg-accent overflow-hidden relative">
+      {/* Subtle shine effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-foreground/5 to-transparent" />
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="flex animate-marquee whitespace-nowrap"
+      >
         {items.map((stat, i) => (
           <div key={i} className="flex items-center mx-8">
             <span className="text-accent-foreground font-heading font-bold text-2xl md:text-3xl">
@@ -22,7 +32,7 @@ const StatsMarquee = () => {
             <span className="ml-8 text-secondary text-2xl">•</span>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
