@@ -10,40 +10,21 @@ import awardsImg from "@/assets/awards.jpeg";
 import languagesImg from "@/assets/languages.jpg";
 
 const categories = [
-  {
-    title: "General Assembly",
-    image: generalAssemblyImg,
-    link: "https://modelunacademy.org/general-assembly",
-  },
-  {
-    title: "Crisis",
-    image: crisisImg,
-    link: "https://modelunacademy.org/crisis",
-  },
-  {
-    title: "Awards",
-    image: awardsImg,
-    link: "https://modelunacademy.org/awards",
-  },
-  {
-    title: "Languages",
-    image: languagesImg,
-    link: "https://modelunacademy.org/languages",
-  },
+  { title: "General Assembly", image: generalAssemblyImg, link: "/general-assembly" },
+  { title: "Crisis", image: crisisImg, link: "/crisis" },
+  { title: "Awards", image: awardsImg, link: "/awards" },
+  { title: "Languages", image: languagesImg, link: "/languages" },
 ];
 
 const LearnModelUN = () => {
   const [current, setCurrent] = useState(0);
-
   const prev = () => setCurrent((c) => (c === 0 ? categories.length - 1 : c - 1));
   const next = () => setCurrent((c) => (c === categories.length - 1 ? 0 : c + 1));
 
   return (
     <div className="min-h-screen bg-background">
       <AnnouncementBar />
-      <div className="pt-8">
-        <Navbar />
-      </div>
+      <div className="pt-8"><Navbar /></div>
 
       <section className="pt-24 relative">
         <div className="relative h-[80vh] overflow-hidden">
@@ -56,11 +37,7 @@ const LearnModelUN = () => {
               transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
-              <img
-                src={categories[current].image}
-                alt={categories[current].title}
-                className="w-full h-full object-cover"
-              />
+              <img src={categories[current].image} alt={categories[current].title} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-foreground/50" />
             </motion.div>
           </AnimatePresence>
@@ -77,8 +54,6 @@ const LearnModelUN = () => {
               </motion.h1>
               <a
                 href={categories[current].link}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-block px-10 py-4 rounded-full bg-primary text-primary-foreground font-medium text-lg hover:opacity-90 transition-opacity shadow-elevated"
               >
                 Access Resources
@@ -86,31 +61,16 @@ const LearnModelUN = () => {
             </div>
           </div>
 
-          <button
-            onClick={prev}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary/80 text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
-          >
+          <button onClick={prev} className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary/80 text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors">
             <ChevronLeft size={24} />
           </button>
-          <button
-            onClick={next}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary/80 text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
-          >
+          <button onClick={next} className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-primary/80 text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors">
             <ChevronRight size={24} />
           </button>
 
-          {/* Dots */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
             {categories.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  i === current
-                    ? "bg-primary-foreground scale-125"
-                    : "bg-primary-foreground/50"
-                }`}
-              />
+              <button key={i} onClick={() => setCurrent(i)} className={`w-3 h-3 rounded-full transition-all ${i === current ? "bg-primary-foreground scale-125" : "bg-primary-foreground/50"}`} />
             ))}
           </div>
         </div>
