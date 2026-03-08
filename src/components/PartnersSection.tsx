@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { GlobeGrid } from "@/components/decorative/SVGElements";
 
 const partners = [
   {
@@ -28,29 +29,49 @@ const partners = [
   },
 ];
 
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1 },
+};
+
 const PartnersSection = () => {
   return (
-    <section className="py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="relative py-24 bg-background overflow-hidden">
+      <GlobeGrid className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] text-primary opacity-[0.04]" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center font-heading text-3xl md:text-4xl font-bold text-foreground mb-14"
         >
           Our Strategic Partners
         </motion.h2>
-        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="flex flex-wrap items-center justify-center gap-10 md:gap-16"
+        >
           {partners.map((partner) => (
             <motion.a
               key={partner.name}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
+              variants={item}
+              whileHover={{ scale: 1.1, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
               className="block"
             >
               <img
@@ -60,7 +81,7 @@ const PartnersSection = () => {
               />
             </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
