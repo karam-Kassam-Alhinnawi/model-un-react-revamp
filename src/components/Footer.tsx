@@ -24,10 +24,16 @@ const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-2 text-sm text-accent-foreground/70">
-              {["About", "Impact", "Programs", "Learn Model UN", "Take Action"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="hover:text-secondary transition-colors">
-                    {link}
+              {[
+                { label: "About", href: "/about" },
+                { label: "Impact", href: "/impact" },
+                { label: "Programs", href: "/programs" },
+                { label: "Learn Model UN", href: "/learn-model-un" },
+                { label: "Take Action", href: "/take-action" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="hover:text-secondary transition-colors">
+                    {link.label}
                   </a>
                 </li>
               ))}
