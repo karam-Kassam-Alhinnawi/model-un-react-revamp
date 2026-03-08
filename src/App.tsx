@@ -9,6 +9,7 @@ import Impact from "./pages/Impact";
 import Programs from "./pages/Programs";
 import LearnModelUN from "./pages/LearnModelUN";
 import TakeAction from "./pages/TakeAction";
+import VolunteerTranslators from "./pages/VolunteerTranslators";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/impact" element={<Impact />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/learn-model-un" element={<LearnModelUN />} />
+          <Route path="/volunteer-translators" element={<VolunteerTranslators />} />
           <Route path="/take-action" element={<TakeAction />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
