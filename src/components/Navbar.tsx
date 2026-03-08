@@ -3,7 +3,13 @@ import { Menu, X, Instagram, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 
-const navLinks = ["About", "Impact", "Programs", "Learn Model UN", "Take Action"];
+const navLinks = [
+  { label: "About", href: "/about" },
+  { label: "Impact", href: "/impact" },
+  { label: "Programs", href: "/programs" },
+  { label: "Learn Model UN", href: "/learn-model-un" },
+  { label: "Take Action", href: "/take-action" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
