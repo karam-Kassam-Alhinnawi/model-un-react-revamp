@@ -3,7 +3,13 @@ import { Menu, X, Instagram, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 
-const navLinks = ["About", "Impact", "Programs", "Learn Model UN", "Take Action"];
+const navLinks = [
+  { label: "About", href: "/about" },
+  { label: "Impact", href: "/impact" },
+  { label: "Programs", href: "/programs" },
+  { label: "Learn Model UN", href: "/learn-model-un" },
+  { label: "Take Action", href: "/take-action" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -21,11 +27,11 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
               className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
@@ -64,11 +70,11 @@ const Navbar = () => {
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
-                  key={link}
-                  href="#"
+                  key={link.label}
+                  href={link.href}
                   className="text-sm font-medium text-muted-foreground hover:text-primary"
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
               <a
