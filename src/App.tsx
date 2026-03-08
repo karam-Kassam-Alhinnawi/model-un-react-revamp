@@ -9,6 +9,7 @@ import Impact from "./pages/Impact";
 import Programs from "./pages/Programs";
 import LearnModelUN from "./pages/LearnModelUN";
 import TakeAction from "./pages/TakeAction";
+import VolunteerTranslators from "./pages/VolunteerTranslators";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
