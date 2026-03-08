@@ -70,11 +70,11 @@ const Navbar = () => {
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
-                  key={link}
-                  href="#"
+                  key={link.label}
+                  href={link.href}
                   className="text-sm font-medium text-muted-foreground hover:text-primary"
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
               <a
