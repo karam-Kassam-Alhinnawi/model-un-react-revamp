@@ -203,7 +203,9 @@ const VolunteerTranslators = () => {
             around the world access diplomacy education in their native language.
           </p>
           <a
-            href="mailto:exec@modelunacademy.org"
+            href="https://forms.gle/Bk6AhbigdZyk3wQj8"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-12 py-4 rounded-full bg-primary text-primary-foreground font-medium text-lg hover:opacity-90 transition-opacity shadow-elevated"
           >
             Apply Now <ArrowRight size={20} />
