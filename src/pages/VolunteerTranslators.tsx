@@ -81,16 +81,22 @@ const VolunteerTranslators = () => {
               </div>
             </div>
 
-            <p className="text-foreground font-medium font-body">
-              ➡️ Email{" "}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://forms.gle/Bk6AhbigdZyk3wQj8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity shadow-elevated"
+              >
+                Apply Now <ArrowRight size={18} />
+              </a>
               <a
                 href="mailto:exec@modelunacademy.org"
-                className="text-primary underline hover:opacity-80"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-border bg-card text-foreground font-medium hover:bg-muted transition-colors"
               >
-                exec@modelunacademy.org
-              </a>{" "}
-              with any questions.
-            </p>
+                Questions? Email Us
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
