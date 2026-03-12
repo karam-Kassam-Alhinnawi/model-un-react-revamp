@@ -5,9 +5,8 @@ const logos = [
   { name: "Forbes", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b971b48c-a7c5-4344-9e19-080235d56cad/Forbes+Logo.jpg" },
   { name: "FOX News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/68b86324-0484-4f6c-9647-df16f95d0405/FOX+News+Logo.jpg" },
   { name: "NBC", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b6c516a5-4474-44f0-a975-3ed6b323d513/NBC+Logo.png" },
-  { name: "Google News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/405d1295-30a2-4002-b614-bf1333978df4/Google_News_Logo-removebg-preview.png" },
-  { name: "Apple News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/020f22fa-6815-4938-bf4e-e9c78414fd63/Apple_News_Logo-removebg-preview.png" },
-  { name: "Yahoo News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/d8799946-c855-4662-8b91-7435cf1c168c/Yahoo_News_Logo-removebg-preview.png" },
+  { name: "Chicago Tribune", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Chicago_Tribune_Logo.svg/1200px-Chicago_Tribune_Logo.svg.png" },
+  { name: "TEDx", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/TEDx_logo_2.svg/1200px-TEDx_logo_2.svg.png" },
 ];
 
 const MediaLogos = () => {

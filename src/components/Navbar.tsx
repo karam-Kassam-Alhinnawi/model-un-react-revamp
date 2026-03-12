@@ -11,7 +11,14 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "About", href: "/about" },
+  {
+    label: "About",
+    href: "/about",
+    children: [
+      { label: "Overview", href: "/about" },
+      { label: "Our People", href: "/our-people" },
+    ],
+  },
   {
     label: "Impact",
     href: "/impact",

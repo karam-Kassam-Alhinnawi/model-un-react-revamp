@@ -18,6 +18,7 @@ import Masterclass from "./pages/Masterclass";
 import Fellowship from "./pages/Fellowship";
 import Donate from "./pages/Donate";
 import Reports from "./pages/Reports";
+import OurPeople from "./pages/OurPeople";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/donate" element={<Donate />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/start-a-chapter" element={<Programs />} />
+          <Route path="/our-people" element={<OurPeople />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
