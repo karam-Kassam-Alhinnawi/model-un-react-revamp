@@ -48,6 +48,7 @@ const App = () => (
           <Route path="/donate" element={<Donate />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/start-a-chapter" element={<Programs />} />
+          <Route path="/our-people" element={<OurPeople />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
