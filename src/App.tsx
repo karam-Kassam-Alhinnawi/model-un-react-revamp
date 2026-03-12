@@ -18,6 +18,7 @@ import Masterclass from "./pages/Masterclass";
 import Fellowship from "./pages/Fellowship";
 import Donate from "./pages/Donate";
 import Reports from "./pages/Reports";
+import OurPeople from "./pages/OurPeople";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
