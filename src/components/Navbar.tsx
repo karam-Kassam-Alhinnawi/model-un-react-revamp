@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Instagram, Linkedin, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import logo from "@/assets/logo.png";
 
 interface NavItem {
   label: string;
@@ -157,13 +156,6 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 group">
-          <motion.img
-            src={logo}
-            alt="Model UN Academy"
-            className="h-10 w-10"
-            whileHover={{ rotate: 10, scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          />
           <span className="font-heading font-bold text-lg text-foreground tracking-tight group-hover:text-primary transition-colors">
             MODEL UN ACADEMY
           </span>
@@ -177,7 +169,7 @@ const Navbar = () => {
 
         <div className="hidden xl:flex items-center gap-4">
           <motion.a
-            href="https://www.instagram.com/modelunacademy/"
+            href="https://www.instagram.com/modelun.academy/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, rotate: 5 }}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Instagram, Linkedin, Mail } from "lucide-react";
-import logo from "@/assets/logo.png";
 import { GlobeGrid } from "@/components/decorative/SVGElements";
+import { Link } from "react-router-dom";
 
 const footerLinks = [
   { label: "About", href: "/about" },
@@ -26,7 +26,6 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center gap-2 mb-4"
             >
-              <img src={logo} alt="Model UN Academy" className="h-10 w-10" />
               <span className="font-heading font-bold text-lg">
                 MODEL UN ACADEMY
               </span>
@@ -50,9 +49,9 @@ const Footer = () => {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <a href={link.href} className="hover:text-secondary transition-colors inline-block relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-secondary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left">
+                  <Link to={link.href} className="hover:text-secondary transition-colors inline-block relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-secondary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left">
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -64,8 +63,8 @@ const Footer = () => {
             </h4>
             <div className="flex gap-4 mb-4">
               {[
-                { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
+                { icon: Instagram, href: "https://www.instagram.com/modelun.academy/" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/modelunacademy/" },
                 { icon: Mail, href: "mailto:exec@modelunacademy.org" },
               ].map(({ icon: Icon, href }, i) => (
                 <motion.a

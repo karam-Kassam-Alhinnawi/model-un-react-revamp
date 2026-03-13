@@ -8,7 +8,6 @@ import { GlobeGrid } from "@/components/decorative/SVGElements";
 const GeneralAssembly = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8"><Navbar /></div>
       <PageHero title="General Assembly" />
 

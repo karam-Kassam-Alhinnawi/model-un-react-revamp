@@ -39,7 +39,6 @@ const steps = [
 const VolunteerTranslators = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8">
         <Navbar />
       </div>

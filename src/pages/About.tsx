@@ -34,7 +34,7 @@ const testimonials = [
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
+      
       <div className="pt-8">
         <Navbar />
       </div>

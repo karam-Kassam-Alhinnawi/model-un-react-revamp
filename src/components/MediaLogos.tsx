@@ -5,8 +5,8 @@ const logos = [
   { name: "Forbes", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b971b48c-a7c5-4344-9e19-080235d56cad/Forbes+Logo.jpg" },
   { name: "FOX News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/68b86324-0484-4f6c-9647-df16f95d0405/FOX+News+Logo.jpg" },
   { name: "NBC", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b6c516a5-4474-44f0-a975-3ed6b323d513/NBC+Logo.png" },
-  { name: "Chicago Tribune", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Chicago_Tribune_Logo.svg/1200px-Chicago_Tribune_Logo.svg.png" },
-  { name: "TEDx", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/TEDx_logo_2.svg/1200px-TEDx_logo_2.svg.png" },
+  { name: "Chicago Tribune", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/007fe245-5cc6-47da-b027-4a2e928a940a/Image+8.jpeg?format=500w" },
+  { name: "TEDx", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b2f99b48-c90e-4465-aec2-8b3b277dc8f4/TEDx+Logo.png?format=300w" },
 ];
 
 const MediaLogos = () => {
@@ -34,7 +34,7 @@ const MediaLogos = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ opacity: 1, scale: 1.1 }}
-              className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
+              className="h-8 md:h-14 object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
             />
           ))}
         </div>

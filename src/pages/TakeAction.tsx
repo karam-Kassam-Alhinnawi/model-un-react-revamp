@@ -8,6 +8,7 @@ import {
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Link, useNavigate } from "react-router-dom";
 
 const opportunities = [
   {
@@ -21,28 +22,28 @@ const opportunities = [
     title: "Read the Written Guides",
     content:
       "Read Model UN Academy's free written guides, available in 104 languages and totaling 1.3 million words. Learn diplomacy through Model UN to master public speaking, research, negotiation, and more.",
-    link: "https://modelunacademy.org/written-guides",
+    link: "/learn-model-un",
     linkText: "Read the Written Guides",
   },
   {
     title: "Register for the Masterclass",
     content:
       "The Model UN Academy Masterclass is a dynamic webinar series crafted to elevate delegates of all experience levels into poised, persuasive, and globally aware diplomats.",
-    link: "https://modelunacademy.org/masterclass",
+    link: "/masterclass",
     linkText: "Register for the Masterclass",
   },
   {
     title: "Start a Chapter",
     content:
       "Model UN Academy Chapters are official local branches of the world's largest youth-led educational Model UN nonprofit. These chapters empower students to become global leaders through diplomacy training, impactful programming, and community engagement. With structured leadership roles and opportunities for hands-on experience, members gain critical skills, connect with like-minded peers, and contribute to real-world change—locally and globally.",
-    link: "https://modelunacademy.org/start-a-chapter",
+    link: "/programs",
     linkText: "Start a Chapter",
   },
   {
     title: "Join the Fellowship Waitlist",
     content:
       "Fellows spend 3-4 months building at the intersection of personal experiences and the United Nations Sustainable Development Goals.",
-    link: "https://modelunacademy.org/fellowship",
+    link: "/fellowship",
     linkText: "Join the Fellowship Waitlist",
   },
 ];
@@ -73,7 +74,6 @@ const services = [
 const TakeAction = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8">
         <Navbar />
       </div>
@@ -113,14 +113,12 @@ const TakeAction = () => {
                     <p className="text-muted-foreground font-body mb-4">
                       {item.content}
                     </p>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to={item.link}
                       className="inline-block px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
                     >
                       {item.linkText}
-                    </a>
+                    </Link>
                   </AccordionContent>
                 </AccordionItem>
               ))}

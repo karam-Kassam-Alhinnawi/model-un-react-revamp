@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
-import heroChapter from "@/assets/hero-chapter.jpeg";
+import heroChapter from "@/assets/video.mov";
 import { GlobeGrid, DotGrid } from "@/components/decorative/SVGElements";
 
 const HeroSection = () => {
@@ -105,13 +105,9 @@ const HeroSection = () => {
         >
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-elevated">
-              <motion.img
-                src={heroChapter}
-                alt="Antipolo City Chapter"
-                className="w-full h-auto object-cover"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.4 }}
-              />
+              <video controls width="100%" controlsList="nodownload">
+               <source src={heroChapter}  />
+              </video>
             </div>
             {/* Decorative frame */}
             <div className="absolute -inset-3 rounded-2xl border border-primary-foreground/10 -z-10" />

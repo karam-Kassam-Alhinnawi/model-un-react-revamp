@@ -2,12 +2,11 @@ import { motion } from "framer-motion";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import heroChapter from "@/assets/hero-chapter.jpeg";
+import heroChapter from "@/assets/video.mov";
 
 const Programs = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8">
         <Navbar />
       </div>
@@ -56,11 +55,9 @@ const Programs = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img
-              src={heroChapter}
-              alt="Model UN Academy Antipolo City, Philippines"
-              className="rounded-2xl shadow-elevated w-full"
-            />
+            <video controls width="100%" controlsList="nodownload">
+               <source src={heroChapter}  />
+              </video>
             <p className="text-center text-sm text-muted-foreground mt-4 font-body font-medium">
               Model UN Academy Antipolo City, Philippines
             </p>

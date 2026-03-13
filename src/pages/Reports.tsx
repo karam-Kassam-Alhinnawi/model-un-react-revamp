@@ -8,7 +8,6 @@ import founderLetter from "@/assets/founder-letter.jpeg";
 const Reports = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8"><Navbar /></div>
 
       <section className="pt-32 pb-24 px-6">

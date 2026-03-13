@@ -18,7 +18,6 @@ const stats = [
 const Impact = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8">
         <Navbar />
       </div>
