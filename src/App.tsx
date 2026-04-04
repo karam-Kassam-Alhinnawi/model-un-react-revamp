@@ -20,6 +20,10 @@ import Donate from "./pages/Donate";
 import Reports from "./pages/Reports";
 import OurPeople from "./pages/OurPeople";
 import NotFound from "./pages/NotFound";
+import LearningPathDashboard from "./pages/LearningPathDashboard";
+import SecurityCouncilBriefing from "./pages/InteractiveModule";
+import AIModel from "./pages/AIModel";
+
 
 const queryClient = new QueryClient();
 
@@ -49,7 +53,10 @@ const App = () => (
           <Route path="/reports" element={<Reports />} />
           <Route path="/start-a-chapter" element={<Programs />} />
           <Route path="/our-people" element={<OurPeople />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/learningpath" element={<LearningPathDashboard/>} />
+          <Route path="/module" element={<SecurityCouncilBriefing/>} />
+          <Route path="/model" element={<AIModel/>} />
+          // {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
