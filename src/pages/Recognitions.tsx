@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import React from 'react';
+import recognitionHero from '@/assets/recognitionImage.jpg';
 
 const logos = [
   { name: "FOX News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/68b86324-0484-4f6c-9647-df16f95d0405/FOX+News+Logo.jpg" },
@@ -52,8 +53,11 @@ const recognitionData = [
 
 const RecognitionHero: React.FC = () => {
     return(
-        <section className='h-[50vh] text-center flex items-center justify-center'>
-              <h2 className="text-center text-4xl font-bold text-gray-900 mb-16 tracking-tight">
+        <section
+          className='h-[50vh] text-center flex items-center justify-center bg-cover bg-center'
+          style={{ backgroundImage: `url(${recognitionHero})` }}
+        >
+              <h2 className="text-center text-4xl font-bold text-white transform translate-y-8 tracking-tight">
           Our Recognitions
         </h2>
         </section>
@@ -65,6 +69,7 @@ const RecognitionSection: React.FC = () => {
     
     <div>
          <Navbar/>
+         <RecognitionHero/>
         <section className="bg-[#f0f2f5] py-20 px-6 font-body">
       <div className="max-w-7xl mx-auto">
         
