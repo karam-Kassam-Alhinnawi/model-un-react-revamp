@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Play, Calendar, Clock, ArrowRight, CheckCircle, Lock } from "lucide-react";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { WaveDivider } from "@/components/decorative/SVGElements";

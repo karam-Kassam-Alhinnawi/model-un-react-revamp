@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
-import Impact from "./pages/Impact";
 import Programs from "./pages/Programs";
 import LearnModelUN from "./pages/LearnModelUN";
 import TakeAction from "./pages/TakeAction";
@@ -23,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import LearningPathDashboard from "./pages/LearningPathDashboard";
 import SecurityCouncilBriefing from "./pages/InteractiveModule";
 import AIModel from "./pages/AIModel";
+import Recognitions from "./pages/Recognitions";
 
 
 const queryClient = new QueryClient();
@@ -36,11 +36,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
-          <Route path="/impact" element={<Impact />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/chapters" element={<Programs />} />
           <Route path="/learn-model-un" element={<LearnModelUN />} />
           <Route path="/written-guides" element={<LearnModelUN />} />
+          <Route path="/recognitions" element={<Recognitions />} />
           <Route path="/take-action" element={<TakeAction />} />
           <Route path="/volunteer-translators" element={<VolunteerTranslators />} />
           <Route path="/general-assembly" element={<GeneralAssembly />} />

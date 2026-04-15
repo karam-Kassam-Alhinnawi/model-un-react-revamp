@@ -3,11 +3,12 @@ import { CrosshatchPattern } from "@/components/decorative/SVGElements";
 
 const WhatIsMunSection = () => {
   return (
-    <section className="relative py-24 bg-card overflow-hidden">
+    <section className="relative py-24 overflow-hidden bg-primary">
       <CrosshatchPattern className="absolute right-0 top-0 w-64 h-64 text-primary" />
 
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <div className="px-6 md:px-12 text-center relative z-10">
         <motion.div
+          className="flex justify-between items-center w-full"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -18,16 +19,17 @@ const WhatIsMunSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6"
+            className="font-body text-3xl md:text-[44px] font-bold text-white mb-6"
           >
             What is Model UN?
           </motion.h2>
+          <motion.div className="flex flex-col items-start text-left">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-muted-foreground text-lg font-body leading-relaxed mb-10 max-w-2xl mx-auto"
+            className="text-white text-xl font-body leading-relaxed mb-10 max-w-2xl mx-auto"
           >
             Model UN is an extracurricular activity that gives students the
             opportunity to simulate United Nations committees as delegates
@@ -40,10 +42,11 @@ const WhatIsMunSection = () => {
             href="/learn-model-un"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:shadow-elevated transition-shadow"
+            className="inline-block px-8 py-3 rounded-full bg-white text-primary font-semibold text-md hover:shadow-elevated transition-shadow"
           >
             Learn More
           </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

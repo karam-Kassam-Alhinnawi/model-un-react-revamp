@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";

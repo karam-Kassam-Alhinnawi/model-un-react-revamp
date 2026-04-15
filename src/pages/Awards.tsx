@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -58,8 +57,8 @@ const Awards = () => {
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
 
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl font-bold text-foreground mb-4">Introduction</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl font-bold text-blue-600 mb-4">Introduction</h2>
               <p className="text-muted-foreground font-body leading-relaxed">Once a delegate has attended a few Model UN conferences, earning awards is the next step. These desirable recognitions aren't easy to get, especially at international conferences with hundreds of delegates. With enough effort, the tried-and-true methods below boost any delegate's chances.</p>
             </div>
 
@@ -69,8 +68,8 @@ const Awards = () => {
               { title: "Unmoderated Caucus", items: tips.unmoderated },
               { title: "Crisis-Specific", items: tips.crisis },
             ].map((section) => (
-              <motion.div key={section.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-card rounded-2xl p-8 shadow-card">
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-4">{section.title}</h2>
+              <motion.div key={section.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="py-8 text-left">
+                <h2 className="font-heading text-2xl font-bold text-blue-600 mb-4">{section.title}</h2>
                 <ul className="space-y-3 text-muted-foreground font-body leading-relaxed">
                   {section.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">

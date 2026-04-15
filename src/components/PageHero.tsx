@@ -9,15 +9,8 @@ interface PageHeroProps {
 const PageHero = ({ title }: PageHeroProps) => {
   return (
     <section className="relative pt-24 h-[50vh] flex items-center justify-center overflow-hidden">
-      <motion.img
-        src={heroBg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5 }}
-      />
-      <div className="absolute inset-0 bg-primary/60" />
+     
+      <div className="absolute inset-0 bg-sky-800" />
 
       {/* Globe SVG */}
       <GlobeGrid className="absolute right-10 bottom-10 w-64 h-64 text-primary-foreground opacity-[0.08]" />
@@ -35,7 +28,7 @@ const PageHero = ({ title }: PageHeroProps) => {
               style={{
                 fontSize: `${2 + Math.random() * 3}rem`,
                 top: `${10 + Math.random() * 70}%`,
-                left: `${5 + Math.random() * 85}%`,
+                left: `${4 + Math.random() * 85}%`,
                 transform: `rotate(${-10 + Math.random() * 20}deg)`,
               }}
             >

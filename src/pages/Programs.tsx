@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroChapter from "@/assets/video.mov";
@@ -18,10 +17,10 @@ const Programs = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-8">
+            <h1 className="font-body text-4xl md:text-5xl font-bold text-foreground mb-8">
               Start a Chapter
             </h1>
-            <div className="space-y-5 text-muted-foreground font-body leading-relaxed">
+            <div className="space-y-5 text-black font-body leading-relaxed">
               <p>
                 Model UN Academy chapters serve as the bridge between our global
                 organization and local communities interested in furthering

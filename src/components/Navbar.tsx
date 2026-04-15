@@ -22,9 +22,8 @@ const navItems: NavItem[] = [
     label: "Impact",
     href: "/impact",
     children: [
-      { label: "Overview", href: "/impact" },
-      { label: "Reports", href: "/reports" },
-      { label: "Languages", href: "/languages" },
+      { label: "2025 Impact Reports", href: "/reports" },
+      { label: "Our Recognitions", href: "/recognitions" },
     ],
   },
   {
@@ -60,12 +59,13 @@ const DropdownMenu = ({ items, isOpen }: { items: { label: string; href: string 
         transition={{ duration: 0.2 }}
         className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50"
       >
-        <div className="bg-card border border-border rounded-lg shadow-elevated py-2 min-w-[200px]">
+        {/* Changed BG to black, text to white, and roundness to 0 */}
+        <div className="bg-black border border-white/20 rounded-none py-2 min-w-[200px] shadow-xl">
           {items.map((item) => (
             <Link
               key={item.href + item.label}
               to={item.href}
-              className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-accent/50 transition-colors"
+              className="block px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
             >
               {item.label}
             </Link>
@@ -97,7 +97,7 @@ const NavItemWithDropdown = ({ item, index }: { item: NavItem; index: number }) 
       >
         <Link
           to={item.href}
-          className="relative text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
+          className="relative text-sm font-medium text-white hover:text-white/80 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-white after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
         >
           {item.label}
         </Link>
@@ -116,7 +116,7 @@ const NavItemWithDropdown = ({ item, index }: { item: NavItem; index: number }) 
     >
       <Link
         to={item.href}
-        className="relative flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-1"
+        className="relative flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors py-1"
       >
         {item.label}
         <ChevronDown
@@ -148,32 +148,37 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-card/95 backdrop-blur-xl shadow-card border-b border-border"
-          : "bg-card/80 backdrop-blur-lg border-b border-border/50"
+      // Changed BG to Black and Text to White
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black text-white border-b border-white/10 ${
+        scrolled ? "backdrop-blur-xl shadow-2xl" : "backdrop-blur-lg"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="font-heading font-bold text-lg text-foreground tracking-tight group-hover:text-primary transition-colors">
+      <div className="max-w-7xl mx-auto px-6 flex items-center h-24 shadow-2xl">
+        {/* Logo and Stretched Title */}
+        <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <img src="logo.png" alt="Logo" className="h-12 w-auto" />
+          <span 
+            className="font-body font-semibold text-lg text-white tracking-wide transition-colors inline-block"
+          >
             MODEL UN ACADEMY
           </span>
         </Link>
 
-        <div className="hidden xl:flex items-center gap-6">
+        {/* Links Group with margin-x separation */}
+        <div className="hidden xl:flex items-center gap-8 ml-12">
           {navItems.map((item, i) => (
             <NavItemWithDropdown key={item.label} item={item} index={i} />
           ))}
         </div>
 
-        <div className="hidden xl:flex items-center gap-4">
+        {/* Socials and Donate separated by ml-auto */}
+        <div className="hidden xl:flex items-center gap-6 ml-auto">
           <motion.a
             href="https://www.instagram.com/modelun.academy/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, rotate: 5 }}
-            className="text-muted-foreground hover:text-primary transition-colors"
+            className="text-white hover:text-white/70 transition-colors"
           >
             <Instagram size={18} />
           </motion.a>
@@ -182,7 +187,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, rotate: -5 }}
-            className="text-muted-foreground hover:text-primary transition-colors"
+            className="text-white hover:text-white/70 transition-colors"
           >
             <Linkedin size={18} />
           </motion.a>
@@ -190,7 +195,8 @@ const Navbar = () => {
             <motion.span
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="ml-2 px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:shadow-elevated transition-shadow inline-block"
+              // Changed to 0 roundness
+              className="ml-2 px-6 py-2 rounded-none bg-primary text-white font-bold text-sm transition-shadow inline-block"
             >
               Donate
             </motion.span>
@@ -198,7 +204,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="xl:hidden text-foreground"
+          className="xl:hidden text-white ml-auto"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           <motion.div
@@ -217,7 +223,7 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="xl:hidden bg-card border-b border-border overflow-hidden"
+            className="xl:hidden bg-black border-b border-white/10 overflow-hidden"
           >
             <div className="px-6 py-4 flex flex-col gap-1">
               {navItems.map((item, i) => (
@@ -229,7 +235,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.05 }}
                         onClick={() => toggleMobileDropdown(item.label)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                        className="flex items-center justify-between w-full text-sm font-medium text-white hover:text-white/70 transition-colors py-2"
                       >
                         {item.label}
                         <ChevronDown
@@ -246,14 +252,14 @@ const Navbar = () => {
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="overflow-hidden pl-4 border-l-2 border-primary/20"
+                            className="overflow-hidden pl-4 border-l-2 border-white/20"
                           >
                             {item.children.map((child) => (
                               <Link
                                 key={child.href + child.label}
                                 to={child.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-muted-foreground hover:text-primary transition-colors py-2"
+                                className="block text-sm text-white/70 hover:text-white transition-colors py-2"
                               >
                                 {child.label}
                               </Link>
@@ -271,7 +277,7 @@ const Navbar = () => {
                       <Link
                         to={item.href}
                         onClick={() => setMobileOpen(false)}
-                        className="block text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                        className="block text-sm font-medium text-white hover:text-white/70 transition-colors py-2"
                       >
                         {item.label}
                       </Link>
@@ -284,7 +290,7 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="mt-2 px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm text-center block"
+                  className="mt-2 px-6 py-2 rounded-none bg-white text-black font-bold text-sm text-center block"
                 >
                   Donate
                 </motion.span>

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -61,18 +60,18 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="bg-card rounded-2xl p-8 shadow-card flex flex-col items-center text-center"
+                className="p-8 flex flex-col items-center text-center"
               >
                 <img
                   src={t.image}
                   alt={t.name}
-                  className="w-28 h-28 rounded-full object-cover mb-6 ring-4 ring-primary/20"
+                  className="w-36 h-36 rounded-lg object-cover mb-6"
                 />
                 <h3 className="font-heading font-bold text-lg text-foreground">
                   {t.name}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">{t.school}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed italic">
+                <p className="text-sm text-black leading-relaxed italic">
                   "{t.quote}"
                 </p>
               </motion.div>
@@ -89,10 +88,10 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-sky-800 text-center mb-8">
               Our Story
             </h2>
-            <div className="space-y-6 text-muted-foreground leading-relaxed font-body">
+            <div className="space-y-6 text-black leading-relaxed font-body">
               <p>
                 Model UN Academy was founded by Momin Ahmed in 2024 to make
                 diplomacy, and the skills that come with it, more accessible to
@@ -126,14 +125,14 @@ const About = () => {
       </section>
 
       {/* Mission Statement */}
-      <section className="py-24 px-6 gradient-hero text-primary-foreground">
+      <section className="pt-0 pb-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8">
+            <h2 className="font-heading text-sky-800 text-3xl md:text-4xl font-bold mb-8">
               Mission Statement
             </h2>
             <p className="text-lg md:text-xl leading-relaxed opacity-90 font-body">

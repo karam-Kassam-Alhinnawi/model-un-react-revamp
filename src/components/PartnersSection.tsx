@@ -52,35 +52,80 @@ const PartnersSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center font-heading text-3xl md:text-4xl font-bold text-foreground mb-14"
+          className="text-center font-body text-3xl md:text-4xl font-bold text-foreground mb-14"
         >
           Our Strategic Partners
         </motion.h2>
+        
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-wrap items-center justify-center gap-10 md:gap-16"
+          className="grid grid-cols-1 md:grid-cols-3 items-center gap-10 md:gap-16"
         >
-          {partners.map((partner) => (
-            <motion.a
-              key={partner.name}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={item}
-              whileHover={{ scale: 1.1, y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="block"
-            >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className="h-16 md:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
-              />
-            </motion.a>
-          ))}
+          {/* Left Column: 2 Stacked */}
+          <div className="flex flex-col items-center justify-center gap-10 md:gap-16">
+            {partners.slice(0, 2).map((partner) => (
+              <motion.a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={item}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className="block"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-16 md:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Middle Column: 1 Big Logo */}
+          <div className="flex items-center justify-center">
+            {partners.slice(2, 3).map((partner) => (
+              <motion.a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={item}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="block"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-24 md:h-80 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Right Column: 2 Stacked */}
+          <div className="flex flex-col items-center justify-center gap-10 md:gap-16">
+            {partners.slice(3, 5).map((partner) => (
+              <motion.a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={item}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className="block"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-16 md:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </motion.a>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

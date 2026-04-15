@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -18,8 +17,8 @@ const GeneralAssembly = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
 
             {/* What is Model UN */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">What is Model UN?</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">What is Model UN?</h2>
               <div className="space-y-4 text-muted-foreground font-body leading-relaxed">
                 <p><strong className="text-foreground">Model UN</strong> is a simulation of the United Nations. A student, typically known as a <strong className="text-foreground">delegate</strong>, is assigned to a country to represent. Regardless of a student's personal beliefs or values, they are expected to adhere to their country's stance as a delegate of that country.</p>
                 <p>A <strong className="text-foreground">Model UN conference</strong> is an event in which students act as delegates, taking on the roles of their assigned countries. A conference is the culmination of the entire event, often hosted by high schools or universities. Some examples of Model UN conferences are Harvard Model UN, Chicago International Model UN, and Saint Ignatius Model UN.</p>
@@ -36,8 +35,8 @@ const GeneralAssembly = () => {
             </div>
 
             {/* Preparation */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">Preparation</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">Preparation</h2>
               <div className="space-y-4 text-muted-foreground font-body leading-relaxed">
                 <p>It is vital to come prepared to Model UN conferences. The first step to preparation consists of research. Delegates typically research their country's history, government, policies, and values. Additionally, delegates are encouraged to study the topics that are assigned to their committee. Typically, a committee will have 2 topics, but the number can vary by conference.</p>
                 <p>A good starting point for research is the <strong className="text-foreground">background guide</strong>, which is provided by the website of a conference.</p>
@@ -93,8 +92,8 @@ const GeneralAssembly = () => {
             </div>
 
             {/* Moderated Caucus */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">The Moderated Caucus</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">The Moderated Caucus</h2>
               <div className="space-y-4 text-muted-foreground font-body leading-relaxed">
                 <p>A conference begins with the <strong className="text-foreground">roll call</strong>, which establishes attendance and determines whether <strong className="text-foreground">quorum</strong> is met. When their country's name is called, delegates respond with "present" or "present and voting". New delegates are encouraged to respond with "present" due to the flexibility given.</p>
                 <p>A <strong className="text-foreground">moderated caucus</strong> is a structured form of debate focused on one specific sub-topic. During this caucus, delegates give speeches, allowing the committee to understand each delegate's position and find possible allies. Key features:</p>
@@ -109,8 +108,8 @@ const GeneralAssembly = () => {
             </div>
 
             {/* Unmoderated Caucus */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">The Unmoderated Caucus</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">The Unmoderated Caucus</h2>
               <div className="space-y-4 text-muted-foreground font-body leading-relaxed">
                 <p>An <strong className="text-foreground">unmoderated caucus</strong> is a less structured form of discussion where delegates leave their seats and form groups (<strong className="text-foreground">blocs</strong>) with delegates holding similar positions. Blocs form through similar speeches during moderated caucuses or through <strong className="text-foreground">lobbying</strong>.</p>
                 <p>Once blocs are formed, delegates begin writing a <strong className="text-foreground">working paper</strong>, a draft of solutions to the topic being discussed. After multiple unmoderated caucuses, the working paper becomes the <strong className="text-foreground">resolution paper</strong>, the final draft.</p>
@@ -122,8 +121,8 @@ const GeneralAssembly = () => {
             </div>
 
             {/* Presentation and Voting */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">Presentation and Voting</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">Presentation and Voting</h2>
               <div className="space-y-4 text-muted-foreground font-body leading-relaxed">
                 <p>Once a resolution paper has enough sponsors and signatories, sponsors will present to the committee. Some sponsors read the paper and others participate in Q&A.</p>
                 <p>All delegates vote on each resolution paper ("yes", "no", "abstain", "yes with rights", "no with rights", or "pass"). A <strong className="text-foreground">simple majority</strong> passes the paper.</p>
@@ -132,8 +131,8 @@ const GeneralAssembly = () => {
             </div>
 
             {/* Miscellaneous */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">Miscellaneous</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">Miscellaneous</h2>
               <div className="space-y-4 text-muted-foreground font-body leading-relaxed">
                 <p>The <strong className="text-foreground">motion order precedence</strong> determines which motions are most important: Point of Order → Point of Personal Privilege → Point of Parliamentary Inquiry → Motion to Adjourn the Meeting → Motion to Suspend the Meeting → Motion to Adjourn Debate → Motion to Close Debate → Motion to Set the Agenda → Motion for a Moderated Caucus → Motion for an Unmoderated Caucus → Motion to Change Speaking Time.</p>
                 <p>A <strong className="text-foreground">supermajority</strong> (more than two-thirds) is required for special resolutions, amendments, procedure changes, suspension of debate, revival of topics, or Division of the Question.</p>
@@ -142,14 +141,14 @@ const GeneralAssembly = () => {
             </div>
 
             {/* Respect */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">Respect and Behavior</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">Respect and Behavior</h2>
               <p className="text-muted-foreground font-body leading-relaxed">It is important to be respectful to other delegates, the dais, and the conference as a whole. Significant effort is put into the creation and running of every Model UN conference, so delegates should put their best effort into their work and contribute to the committee as much as they can.</p>
             </div>
 
             {/* Glossary */}
-            <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">Glossary</h2>
+            <div className="py-8 text-left">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-blue-600 mb-4">Glossary</h2>
               <dl className="space-y-3 text-muted-foreground font-body leading-relaxed">
                 {[
                   ["Amendment", "A revision to part of a resolution paper that can serve as a compromise between two groups of delegates."],

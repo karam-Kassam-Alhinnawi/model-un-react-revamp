@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { WaveDivider } from "@/components/decorative/SVGElements";
+import { Button } from "@/components/ui/button"; // Assuming a standard UI button exists
 
 const seniorLeadership = [
   {
@@ -76,7 +76,17 @@ const advisoryBoard = [
   },
 ];
 
-const PersonCard = ({ person, index }: { person: typeof seniorLeadership[0]; index: number }) => (
+const PersonCard = ({ 
+  person, 
+  index, 
+  imageClass = "w-44 h-44 rounded-full", 
+  showButton = false 
+}: { 
+  person: typeof seniorLeadership[0]; 
+  index: number;
+  imageClass?: string;
+  showButton?: boolean;
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -84,39 +94,28 @@ const PersonCard = ({ person, index }: { person: typeof seniorLeadership[0]; ind
     transition={{ delay: Math.min(index * 0.08, 0.4), duration: 0.5 }}
     className="group text-center"
   >
-    <div className="relative w-44 h-44 mx-auto mb-5">
-      <div className="absolute inset-0 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300 scale-105" />
+    <div className={`relative mx-auto mb-5 ${imageClass.split(' ').filter(c => c.startsWith('w-') || c.startsWith('h-')).join(' ')}`}>
+      <div className={`absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300 scale-105 ${imageClass.includes('rounded-full') ? 'rounded-full' : ''}`} />
       <img
         src={person.image}
         alt={person.name}
-        className="relative w-44 h-44 rounded-full object-cover shadow-elevated group-hover:scale-105 transition-transform duration-500"
+        className={`relative object-cover shadow-elevated group-hover:scale-105 transition-transform duration-500 ${imageClass}`}
       />
     </div>
     <h3 className="font-heading font-bold text-lg text-foreground mb-1">{person.name}</h3>
-    <p className="text-sm text-muted-foreground font-body leading-snug max-w-[200px] mx-auto">{person.role}</p>
+    <p className="text-sm text-muted-foreground font-body leading-snug max-w-[200px] mx-auto mb-4">{person.role}</p>
+    {showButton && (
+      <button className="px-4 py-2 text-sm font-medium border border-primary text-primary bg-primary text-white hover:scale-105 transition duration-300 rounded-md">
+        Read Bio
+      </button>
+    )}
   </motion.div>
 );
 
 const OurPeople = () => {
   return (
     <div className="min-h-screen bg-background">
-      <AnnouncementBar />
       <div className="pt-8"><Navbar /></div>
-
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 px-6 gradient-hero overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-primary-foreground mb-5">
-              Our People
-            </h1>
-            <p className="text-primary-foreground/70 font-body text-lg max-w-2xl mx-auto">
-              Meet the dedicated team and advisors working to make diplomacy education accessible for all.
-            </p>
-          </motion.div>
-        </div>
-        <WaveDivider className="absolute bottom-0 left-0 w-full h-12 text-background" />
-      </section>
 
       {/* Senior Leadership */}
       <section className="py-24 px-6">
@@ -129,9 +128,16 @@ const OurPeople = () => {
           >
             Senior Leadership
           </motion.h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-12">
+          {/* Grid maintained for Senior Leadership, but image size increased via props */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-10 lg:gap-12">
             {seniorLeadership.map((person, i) => (
-              <PersonCard key={person.name} person={person} index={i} />
+              <PersonCard 
+                key={person.name} 
+                person={person} 
+                index={i} 
+                imageClass="w-56 h-56 rounded-full" 
+                showButton={true} 
+              />
             ))}
           </div>
         </div>
@@ -139,7 +145,7 @@ const OurPeople = () => {
 
       {/* Advisory Board */}
       <section className="py-24 px-6 bg-card">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,9 +154,15 @@ const OurPeople = () => {
           >
             Advisory Board
           </motion.h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 lg:gap-12">
+          {/* Changed to 4 in a row for LG screens */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
             {advisoryBoard.map((person, i) => (
-              <PersonCard key={person.name} person={person} index={i} />
+              <PersonCard 
+                key={person.name} 
+                person={person} 
+                index={i} 
+                imageClass="w-full aspect-square rounded-none" 
+              />
             ))}
           </div>
         </div>
