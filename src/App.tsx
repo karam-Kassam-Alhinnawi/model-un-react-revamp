@@ -53,7 +53,8 @@ const App = () => (
           <Route path="/reports" element={<Reports />} />
           <Route path="/start-a-chapter" element={<Programs />} />
           <Route path="/our-people" element={<OurPeople />} />
-          <Route path="/learningpath" element={<LearningPathDashboard/>} />
+          <Route path="/learning-path" element={<LearningPathDashboard/>} />
+          <Route path="/learning-path/:pageId" element={<LearningPathDashboard/>} />
           <Route path="/module" element={<SecurityCouncilBriefing/>} />
           <Route path="/model" element={<AIModel/>} />
           // {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
