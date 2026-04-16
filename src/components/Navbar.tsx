@@ -44,7 +44,7 @@ const navItems: NavItem[] = [
       { label: "Crisis", href: "/crisis" },
       { label: "Awards", href: "/awards" },
       { label: "Masterclass", href: "/masterclass" },
-      { label: "Gamified MUN", href: "/learningpath"}
+      { label: "Gamified MUN", href: "/learning-path"}
     ],
   },
   { label: "Take Action", href: "/take-action" },
