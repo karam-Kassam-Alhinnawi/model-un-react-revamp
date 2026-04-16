@@ -7,6 +7,7 @@ import MissionSection from "@/components/MissionSection";
 import PartnersSection from "@/components/PartnersSection";
 import WhatIsMunSection from "@/components/WhatIsMunSection";
 import Footer from "@/components/Footer";
+import NewsSection from "@/components/Newssection";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <MissionSection />
       <PartnersSection />
       <WhatIsMunSection />
+      <NewsSection/>
       <Footer />
     </div>
   );
