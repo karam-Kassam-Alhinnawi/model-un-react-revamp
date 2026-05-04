@@ -7,6 +7,7 @@ import generalAssemblyImg from "@/assets/general-assembly.jpeg";
 import crisisImg from "@/assets/crisis.jpeg";
 import awardsImg from "@/assets/awards.jpeg";
 import languagesImg from "@/assets/languages.jpg";
+import { Link } from "react-router-dom";
 
 const categories = [
   { title: "General Assembly", image: generalAssemblyImg, link: "/general-assembly" },
@@ -22,7 +23,7 @@ const LearnModelUN = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="pt-8"><Navbar /></div>
+      <div className=""><Navbar /></div>
 
       <section className="pt-24 relative">
         <div className="relative h-[80vh] overflow-hidden">
@@ -50,12 +51,7 @@ const LearnModelUN = () => {
               >
                 {categories[current].title}
               </motion.h1>
-              <a
-                href={categories[current].link}
-                className="inline-block px-10 py-4 rounded-full bg-primary text-primary-foreground font-medium text-lg hover:opacity-90 transition-opacity shadow-elevated"
-              >
-                Access Resources
-              </a>
+              <Link to={categories[current].link} className="inline-block px-10 py-4 rounded-full bg-primary text-primary-foreground font-medium text-lg hover:opacity-90 transition-opacity shadow-elevated">Access Resources</Link>
             </div>
           </div>
 

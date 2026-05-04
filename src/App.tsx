@@ -23,6 +23,10 @@ import LearningPathDashboard from "./pages/LearningPathDashboard";
 import SecurityCouncilBriefing from "./pages/InteractiveModule";
 import AIModel from "./pages/AIModel";
 import Recognitions from "./pages/Recognitions";
+import BioPage from "./pages/BioPage";
+import { PeopleProvider } from './context/PeopleContext';
+import AdminPage from "./pages/AdminPage";
+import AdminGuard from "./pages/AdminGuard";
 
 
 const queryClient = new QueryClient();
@@ -37,6 +41,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/admin" element={<AdminGuard />} />
           <Route path="/chapters" element={<Programs />} />
           <Route path="/learn-model-un" element={<LearnModelUN />} />
           <Route path="/written-guides" element={<LearnModelUN />} />
@@ -57,6 +62,7 @@ const App = () => (
           <Route path="/learning-path/:pageId" element={<LearningPathDashboard/>} />
           <Route path="/module" element={<SecurityCouncilBriefing/>} />
           <Route path="/model" element={<AIModel/>} />
+          <Route path="/bio" element={<BioPage />} />
           // {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

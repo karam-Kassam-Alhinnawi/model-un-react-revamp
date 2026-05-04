@@ -15,14 +15,6 @@ const MediaLogos = () => {
       <FloatingCircles className="absolute -left-10 top-0 w-40 h-40 text-primary" />
       
       <div className="max-w-6xl mx-auto px-6">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center text-muted-foreground text-sm uppercase tracking-widest mb-10 font-body"
-        >
-          Featured In
-        </motion.p>
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
           {logos.map((logo, i) => (
             <motion.img

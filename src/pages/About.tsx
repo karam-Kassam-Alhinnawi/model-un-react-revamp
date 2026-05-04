@@ -2,42 +2,39 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import nainaImg from "@/assets/naina-kapur.jpg";
-import charlesImg from "@/assets/charles-witteman.jpg";
-import sarahImg from "@/assets/sarah-maghrabi.jpg";
-
-const testimonials = [
-  {
-    name: "Naina Kapur",
-    school: "Loyola University Chicago",
-    image: nainaImg,
-    quote:
-      "Model UN is one of the most valuable extracurricular activities. Not just because it teaches students how to be concise, articulate and creative individuals, but because it teaches a lifelong skill of connecting. Personally, Model UN has given me some of the best friends who I still lean on today. Additionally learning from Model UN Academy is a gift in itself.",
-  },
-  {
-    name: "Charles Witteman",
-    school: "University of Virginia",
-    image: charlesImg,
-    quote:
-      "Upon further investigation, I loved the initial look of the Model UN Academy website. Right away, it was very apparent that the scope of Model UN Academy far exceeded my expectations, and it's clear that their team is dedicated to delivering quality Model UN resources to as many students as possible... I left feeling inspired and driven by Momin's vision for global student empowerment and collaboration.",
-  },
-  {
-    name: "Sarah Maghrabi",
-    school: "University of Illinois Urbana-Champaign",
-    image: sarahImg,
-    quote:
-      "I joined Model UN as a junior in high school, eager to learn more about how it works. I found an amazing community and learned a lot about what it means to be a delegate and representative of a larger state. It helped me improve not only my technical skills but also develop soft skills that are crucial to working in team environments.",
-  },
-];
+import { useState, useEffect } from "react";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const About = () => {
+  const [ourStoryParagraphs, setOurStoryParagraphs] = useState<string[]>([]);
+  const [missionStatement, setMissionStatement] = useState("");
+  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAbout = async () => {
+      const snap = await getDocs(collection(db, "about_content"));
+      snap.docs.forEach((doc) => {
+        const data = doc.data();
+        if (data.section_key === "our-story-paragraphs") {
+          setOurStoryParagraphs(data.content.paragraphs);
+        } else if (data.section_key === "mission-statement") {
+          setMissionStatement(data.content.text);
+        } else if (data.section_key === "testimonials") {
+          setTestimonials(data.content);
+        }
+      });
+      setLoading(false);
+    };
+    fetchAbout();
+  }, []);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+
   return (
     <div className="min-h-screen bg-background">
-      
-      <div className="pt-8">
-        <Navbar />
-      </div>
-
+      <div className="pt-8"><Navbar /></div>
       <PageHero title="Our Organization" />
 
       {/* Thoughts From Students */}
@@ -51,11 +48,10 @@ const About = () => {
           >
             Thoughts From Students
           </motion.h2>
-
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
               <motion.div
-                key={t.name}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -67,13 +63,9 @@ const About = () => {
                   alt={t.name}
                   className="w-36 h-36 rounded-lg object-cover mb-6"
                 />
-                <h3 className="font-heading font-bold text-lg text-foreground">
-                  {t.name}
-                </h3>
+                <h3 className="font-heading font-bold text-lg text-foreground">{t.name}</h3>
                 <p className="text-sm text-muted-foreground mb-4">{t.school}</p>
-                <p className="text-sm text-black leading-relaxed italic">
-                  "{t.quote}"
-                </p>
+                <p className="text-sm text-black leading-relaxed italic">"{t.quote}"</p>
               </motion.div>
             ))}
           </div>
@@ -83,42 +75,12 @@ const About = () => {
       {/* Our Story */}
       <section className="py-24 px-6 bg-card">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-sky-800 text-center mb-8">
-              Our Story
-            </h2>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-sky-800 text-center mb-8">Our Story</h2>
             <div className="space-y-6 text-black leading-relaxed font-body">
-              <p>
-                Model UN Academy was founded by Momin Ahmed in 2024 to make
-                diplomacy, and the skills that come with it, more accessible to
-                students worldwide. As a seasoned Model UN delegate himself,
-                Momin recognized the power of Model UN in teaching public
-                speaking, intellectual reasoning, negotiation, research, and
-                many other vital skills. On top of skill development, Model UN
-                also helps youth learn about global issues that aren't taught
-                about in the majority of classrooms. Unfortunately, Model UN is
-                an extracurricular activity typically limited to high-income
-                students that speak English.
-              </p>
-              <p>
-                Committed to solve this issue, Momin began writing educational
-                guides on Model UN for free and translating them into other
-                languages. With the initial success and positive feedback from
-                local schools, Momin realized the profound impact of free
-                education, especially when made available in a multitude of
-                languages. This movement to make diplomacy more accessible has
-                now grown into Model UN Academy.
-              </p>
-              <p>
-                Momin's movement to make diplomacy more accessible to students
-                worldwide has now grown into a global movement. Today, Model UN
-                Academy serves as a global community for tens of thousands of
-                students worldwide by championing accessibility.
-              </p>
+              {ourStoryParagraphs.map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -127,22 +89,9 @@ const About = () => {
       {/* Mission Statement */}
       <section className="pt-0 pb-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading text-sky-800 text-3xl md:text-4xl font-bold mb-8">
-              Mission Statement
-            </h2>
-            <p className="text-lg md:text-xl leading-relaxed opacity-90 font-body">
-              Model UN Academy is dedicated to bridging the gap between
-              universal talent and limited opportunity in global diplomacy
-              education. By transforming diplomacy into a vital life skill
-              through accessibility in Model UN education, we're preparing the
-              next generation to become Citizen Diplomats capable of navigating
-              a polarized world with empathy and action.
-            </p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="font-heading text-sky-800 text-3xl md:text-4xl font-bold mb-8">Mission Statement</h2>
+            <p className="text-lg md:text-xl leading-relaxed opacity-90 font-body">{missionStatement}</p>
           </motion.div>
         </div>
       </section>

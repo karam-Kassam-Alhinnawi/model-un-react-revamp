@@ -1,90 +1,45 @@
 import { motion } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Link, useNavigate } from "react-router-dom";
-
-const opportunities = [
-  {
-    title: "Apply For Global Leadership",
-    content:
-      "Apply to join the Global Leadership team of a Forbes 30 Under 30 nonprofit! Applications are due Monday, March 2nd, 2026 and will be reviewed on a rolling basis.",
-    link: "https://docs.google.com/forms/d/e/1FAIpQLSdkT8kn5VV2Ju3YwmKRBo5EG2Vr0I2w-FsAWFGzjYGDAHQH6Q/viewform?usp=dialog",
-    linkText: "Apply For Global Leadership",
-  },
-  {
-    title: "Read the Written Guides",
-    content:
-      "Read Model UN Academy's free written guides, available in 104 languages and totaling 1.3 million words. Learn diplomacy through Model UN to master public speaking, research, negotiation, and more.",
-    link: "/learn-model-un",
-    linkText: "Read the Written Guides",
-  },
-  {
-    title: "Register for the Masterclass",
-    content:
-      "The Model UN Academy Masterclass is a dynamic webinar series crafted to elevate delegates of all experience levels into poised, persuasive, and globally aware diplomats.",
-    link: "/masterclass",
-    linkText: "Register for the Masterclass",
-  },
-  {
-    title: "Start a Chapter",
-    content:
-      "Model UN Academy Chapters are official local branches of the world's largest youth-led educational Model UN nonprofit. These chapters empower students to become global leaders through diplomacy training, impactful programming, and community engagement. With structured leadership roles and opportunities for hands-on experience, members gain critical skills, connect with like-minded peers, and contribute to real-world change—locally and globally.",
-    link: "/programs",
-    linkText: "Start a Chapter",
-  },
-  {
-    title: "Join the Fellowship Waitlist",
-    content:
-      "Fellows spend 3-4 months building at the intersection of personal experiences and the United Nations Sustainable Development Goals.",
-    link: "/fellowship",
-    linkText: "Join the Fellowship Waitlist",
-  },
-];
-
-const services = [
-  {
-    title: "Partnerships",
-    content:
-      "Model UN Academy is proud to collaborate with mission-aligned organizations to expand access to global education and civic engagement. We welcome opportunities to explore partnerships with organizations that value youth empowerment, education, diplomacy, and global learning. Together, we can make a meaningful, global impact.",
-  },
-  {
-    title: "Press Coverage",
-    content:
-      "Model UN Academy has captured national and international attention for our innovative, youth-led approach to global education. Our story is resonating across communities—and we're just getting started. For media inquiries or opportunities to cover our work, please get in touch.",
-  },
-  {
-    title: "Speaking Engagements",
-    content:
-      "Our youth leaders share insights on global issues, education, language accessibility, youth-driven advocacy, and more. We bring firsthand expertise on mobilizing young people, breaking barriers to advocacy, and action through inclusive, multilingual communication. Topics: Youth Empowerment, Language Access, Economic Access, Responsible Applications of Technology, Global Issues, Education, Entrepreneurship.",
-  },
-  {
-    title: "Advisory Services",
-    content:
-      "Our organization and our student leaders provide guidance and advisory services to organizations, governments, businesses, and schools on: Youth Empowerment, Language Access, Economic Access, Responsible Applications of Technology, Global Issues, Education, Entrepreneurship. Our advisory services help develop inclusive, impactful strategies that drive meaningful educational action and ensure diversity.",
-  },
-];
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const TakeAction = () => {
+  const [opportunities, setOpportunities] = useState<any[]>([]);
+  const [services, setServices] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [oppSnap, servSnap] = await Promise.all([
+          getDocs(collection(db, "take_action_items")),
+          getDocs(collection(db, "services")),
+        ]);
+        setOpportunities(oppSnap.docs.map((d) => ({ id: d.id, ...d.data() })));
+        setServices(servSnap.docs.map((d) => ({ id: d.id, ...d.data() })));
+      } catch (error) {
+        console.error("Error fetching take action data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="pt-8">
-        <Navbar />
-      </div>
+      <div className="pt-8"><Navbar /></div>
 
       <section className="pt-32 pb-24 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
-          {/* Opportunities */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
                 Reach Out About Our Opportunities
               </h1>
@@ -97,27 +52,23 @@ const TakeAction = () => {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
             <Accordion type="single" collapsible className="w-full">
               {opportunities.map((item, i) => (
-                <AccordionItem key={i} value={`opp-${i}`}>
+                <AccordionItem key={item.id || i} value={`opp-${i}`}>
                   <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent>
-                    <p className="text-muted-foreground font-body mb-4">
-                      {item.content}
-                    </p>
-                    <Link
-                      to={item.link}
-                      className="inline-block px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
-                    >
-                      {item.linkText}
-                    </Link>
+                    <p className="text-black text-lg font-body mb-4 whitespace-pre-line">{item.content}</p>
+                    {item.link_url && item.link_text && (
+                      <Link
+                        to={item.link_url}
+                        className="inline-block px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
+                      >
+                        {item.link_text}
+                      </Link>
+                    )}
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -126,7 +77,7 @@ const TakeAction = () => {
         </div>
       </section>
 
-      {/* Request Our Services */}
+      {/* Services section – now dynamic from Firestore */}
       <section className="py-24 px-6 bg-card">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
           <motion.div
@@ -135,21 +86,16 @@ const TakeAction = () => {
             viewport={{ once: true }}
           >
             <Accordion type="single" collapsible className="w-full">
-              {services.map((item, i) => (
-                <AccordionItem key={i} value={`svc-${i}`}>
-                  <AccordionTrigger className="font-heading text-lg font-semibold text-foreground">
-                    {item.title}
+              {services.map((service, i) => (
+                <AccordionItem key={service.id || i} value={`svc-${i}`}>
+                  <AccordionTrigger className="font-heading text-2xl font-semibold text-foreground">
+                    {service.title}
                   </AccordionTrigger>
                   <AccordionContent>
-                    <p className="text-muted-foreground font-body mb-4">
-                      {item.content}
-                    </p>
-                    <p className="text-foreground font-medium text-sm">
+                    <p className="text-black text-lg font-body mb-4 whitespace-pre-line">{service.content}</p>
+                    <p className="text-foreground font-bold text-2xl">
                       ➡️ Email{" "}
-                      <a
-                        href="mailto:exec@modelunacademy.org"
-                        className="text-primary underline"
-                      >
+                      <a href="mailto:exec@modelunacademy.org" className="text-primary underline">
                         exec@modelunacademy.org
                       </a>
                     </p>

@@ -1,131 +1,95 @@
 import { motion } from "framer-motion";
 import { GlobeGrid } from "@/components/decorative/SVGElements";
-
-const partners = [
-  {
-    name: "UNA Chicago",
-    logo: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/3c9c7837-b144-452c-b3d1-3b263367cb60/UNA%E2%80%93Chicago+Logo.png",
-    url: "https://www.unachicago.org/",
-  },
-  {
-    name: "MedGlobal",
-    logo: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/eac17681-7622-4c85-8b2c-290c9a9b882e/MedGlobal+logo.png",
-    url: "https://medglobal.org/",
-  },
-  {
-    name: "Grace School of Applied Diplomacy",
-    logo: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/7aff5be1-906e-42bc-8c5b-77b5e3bef0d7/Grace+School+of+Applied+Diplomacy+at+DePaul+University+Logo.png",
-    url: "https://las.depaul.edu/academics/departments-programs/applied-diplomacy",
-  },
-  {
-    name: "Humanity Rising",
-    logo: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/dd27d216-3ce6-4ce0-a80b-0f610b3cf936/Humanity+Rising+Logo.png",
-    url: "https://humanityrising.org/",
-  },
-  {
-    name: "DePaul University Model UN",
-    logo: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/6f2ac383-3c7a-4a33-b923-3cbbb8c927d4/DePaul+University+Model+UN+Logo.png",
-    url: "https://www.depaulmun.org/",
-  },
-];
-
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1 },
-};
+import { useState, useEffect } from "react";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const PartnersSection = () => {
-  return (
-    <section className="relative py-24 bg-background overflow-hidden">
-      <GlobeGrid className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] text-primary opacity-[0.04]" />
+  const [partners, setPartners] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.h2
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const snap = await getDocs(collection(db, "partners"));
+        setPartners(snap.docs.map((doc) => doc.data()));
+      } catch (err) {
+        console.error("Firebase fetch failed:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPartners();
+  }, []);
+
+  if (loading) return <div className="py-24 text-center text-muted-foreground">Loading partners...</div>;
+
+const getGridClasses = (index: number) => {
+    switch (index) {
+      case 0: return "col-start-1 row-start-1"; 
+      case 1: return "col-start-1 row-start-2"; 
+      case 2: return "col-start-2 row-start-1 row-span-2"; // The Big Middle
+      case 3: return "col-start-3 row-start-1"; 
+      case 4: return "col-start-3 row-start-2"; 
+      default: return ""; 
+    }
+  };
+
+  // Stagger variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20, scale: 0.9 },
+    show: { opacity: 1, y: 0, scale: 1 },
+  };
+
+  return (
+   <section className="relative py-16 bg-background overflow-hidden">
+      <GlobeGrid className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] text-primary opacity-[0.04]" />
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center font-body text-3xl md:text-4xl font-bold text-foreground mb-14"
+          className="text-center text-2xl md:text-3xl font-bold mb-12 opacity-80"
         >
           Our Strategic Partners
         </motion.h2>
-        
+
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 items-center gap-10 md:gap-16"
+          className="grid grid-cols-3 gap-6 md:gap-24 items-center justify-items-center"
         >
-          {/* Left Column: 2 Stacked */}
-          <div className="flex flex-col items-center justify-center gap-10 md:gap-16">
-            {partners.slice(0, 2).map((partner) => (
-              <motion.a
-                key={partner.name}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={item}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="block"
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="h-16 md:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* Middle Column: 1 Big Logo */}
-          <div className="flex items-center justify-center">
-            {partners.slice(2, 3).map((partner) => (
-              <motion.a
-                key={partner.name}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={item}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="block"
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="h-24 md:h-80 object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* Right Column: 2 Stacked */}
-          <div className="flex flex-col items-center justify-center gap-10 md:gap-16">
-            {partners.slice(3, 5).map((partner) => (
-              <motion.a
-                key={partner.name}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={item}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="block"
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="h-16 md:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
-              </motion.a>
-            ))}
-          </div>
+          {partners.slice(0, 5).map((p, i) => (
+            <motion.a
+              key={i}
+              href={p.website_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={item}
+              whileHover={{ scale: 1.05 }}
+              className={`flex items-center justify-center w-full ${getGridClasses(i)}`}
+            >
+              <img
+                src={p.logo_url}
+                alt={p.name}
+                className={`
+                  ${i === 2 ? 'max-h-28 md:max-h-44' : 'max-h-12 md:max-h-20'} 
+                  w-full object-contain opacity-90 hover:opacity-100 transition-opacity scale-125
+                `}
+              />
+            </motion.a>
+          ))}
         </motion.div>
       </div>
     </section>
