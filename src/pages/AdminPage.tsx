@@ -351,16 +351,37 @@ function PeopleTab({ people, onRefresh, movePerson }: {
   onRefresh: () => void; 
   movePerson: (index: number, dir: "up" | "down") => void 
 }) {
-  const [form, setForm] = useState({ name: "", role: "", image_url: "", category: "leadership", bio: "" });
+const [form, setForm] = useState({
+  name: "",
+  role: "",
+  image_url: "",
+  category: "leadership",
+  bio: "",
+  email: "",
+  instagram: "",
+  linkedin: "",
+});
 
-  const addPerson = async () => {
-    if (!form.name.trim()) return;
-    const maxSort = people.length > 0 ? Math.max(...people.map(p => p.sort_order || 0)) : 0;
-    await addDoc(collection(db, "people"), { ...form, sort_order: maxSort + 1 });
-    onRefresh();
-    setForm({ name: "", role: "", image_url: "", category: "leadership", bio: "" });
-  };
-
+ const addPerson = async () => {
+  if (!form.name.trim()) return;
+  const maxSort = people.length > 0 ? Math.max(...people.map(p => p.sort_order || 0)) : 0;
+  await addDoc(collection(db, "people"), {
+    name: form.name,
+    role: form.role,
+    image_url: form.image_url,
+    category: form.category,
+    bio: form.bio,
+    email: form.email,
+    instagram: form.instagram,
+    linkedin: form.linkedin,
+    sort_order: maxSort + 1,
+  });
+  onRefresh();
+  setForm({
+    name: "", role: "", image_url: "", category: "leadership", bio: "",
+    email: "", instagram: "", linkedin: "",
+  });
+};
   // Flat list with global index for movePerson
   const allPeople = people.map((p, i) => ({ ...p, globalIndex: i }));
 
@@ -376,6 +397,12 @@ function PeopleTab({ people, onRefresh, movePerson }: {
           <option value="advisory">Advisory Board</option>
         </select>
         <textarea value={form.bio} onChange={e => setForm({...form, bio: e.target.value})} className="w-full p-2 border rounded" placeholder="Bio" rows={3} />
+        <input value={form.email} onChange={e => setForm({...form, email: e.target.value})}
+  className="w-full p-2 border rounded" placeholder="Email" />
+<input value={form.instagram} onChange={e => setForm({...form, instagram: e.target.value})}
+  className="w-full p-2 border rounded" placeholder="Instagram URL" />
+<input value={form.linkedin} onChange={e => setForm({...form, linkedin: e.target.value})}
+  className="w-full p-2 border rounded" placeholder="LinkedIn URL" />
         <button onClick={addPerson} className="px-6 py-2 bg-primary text-white rounded-full">Add</button>
       </div>
 
@@ -443,16 +470,19 @@ function PersonRow({ person, onUpdate, index, move, isFirst, isLast }: {
   const [data, setData] = useState({...person});
 
   const save = async () => {
-    await updateDoc(doc(db, "people", person.id), { 
-      name: data.name, 
-      role: data.role, 
-      image_url: data.image_url, 
-      bio: data.bio, 
-      category: data.category 
-    });
-    setEditing(false);
-    onUpdate();
-  };
+  await updateDoc(doc(db, "people", person.id), {
+    name: data.name,
+    role: data.role,
+    image_url: data.image_url,
+    bio: data.bio,
+    category: data.category,
+    email: data.email || "",
+    instagram: data.instagram || "",
+    linkedin: data.linkedin || "",
+  });
+  setEditing(false);
+  onUpdate();
+};
 
   return (
     <div className="flex items-center gap-4 p-2 border rounded mb-2 bg-card">
@@ -466,6 +496,12 @@ function PersonRow({ person, onUpdate, index, move, isFirst, isLast }: {
           <input value={data.name} onChange={e => setData({...data, name: e.target.value})} className="w-full p-1 border rounded" />
           <input value={data.role} onChange={e => setData({...data, role: e.target.value})} className="w-full p-1 border rounded" />
           <input value={data.image_url} onChange={e => setData({...data, image_url: e.target.value})} className="w-full p-1 border rounded" />
+          <input value={data.email || ""} onChange={e => setData({...data, email: e.target.value})}
+  className="w-full p-1 border rounded" placeholder="Email" />
+<input value={data.instagram || ""} onChange={e => setData({...data, instagram: e.target.value})}
+  className="w-full p-1 border rounded" placeholder="Instagram URL" />
+<input value={data.linkedin || ""} onChange={e => setData({...data, linkedin: e.target.value})}
+  className="w-full p-1 border rounded" placeholder="LinkedIn URL" />
           <textarea value={data.bio || ""} onChange={e => setData({...data, bio: e.target.value})} className="w-full p-1 border rounded" placeholder="Bio" rows={2} />
           <select value={data.category} onChange={e => setData({...data, category: e.target.value})} className="w-full p-1 border rounded">
             <option value="leadership">Leadership</option>

@@ -1,25 +1,53 @@
 import { motion } from "framer-motion";
-import { FloatingCircles } from "@/components/decorative/SVGElements";
+import { db } from "@/lib/firebase"; // adjust path if needed
+import { collection, getDocs } from "firebase/firestore";
+import { useState, useEffect } from "react";
 
-const logos = [
-  { name: "NBC", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b6c516a5-4474-44f0-a975-3ed6b323d513/NBC+Logo.png" },
-  { name: "Chicago Tribune", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/007fe245-5cc6-47da-b027-4a2e928a940a/Image+8.jpeg?format=500w" },
-  { name: "Forbes", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b971b48c-a7c5-4344-9e19-080235d56cad/Forbes+Logo.jpg" },
-  { name: "FOX News", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/68b86324-0484-4f6c-9647-df16f95d0405/FOX+News+Logo.jpg" },
-  { name: "TEDx", url: "https://images.squarespace-cdn.com/content/v1/683e26f2aa698f0058a46959/b2f99b48-c90e-4465-aec2-8b3b277dc8f4/TEDx+Logo.png?format=300w" },
-];
+interface MediaLogo {
+  id: string;
+  name: string;
+  logo_url: string;
+  sort_order?: number;
+}
 
 const MediaLogos = () => {
+  const [logos, setLogos] = useState<MediaLogo[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLogos = async () => {
+      try {
+        const snap = await getDocs(collection(db, "media_logos"));
+        const items: MediaLogo[] = snap.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as MediaLogo[];
+
+        // Sort client-side (same logic as AdminPage)
+        items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+
+        setLogos(items);
+      } catch (err) {
+        console.error("Failed to load media logos:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLogos();
+  }, []);
+
+  if (loading) return null; // or a tiny spinner
+
   return (
     <section className="relative py-16 bg-card overflow-hidden">
-      <FloatingCircles className="absolute -left-10 top-0 w-40 h-40 text-primary" />
       
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-8xl mx-auto px-6">
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-          {logos.map((logo, i) => (
+          {logos.map((logo) => (
             <motion.img
-              key={logo.name}
-              src={logo.url}
+              key={logo.id}
+              src={logo.logo_url}
               alt={logo.name}
               className="h-8 md:h-16 object-contain cursor-pointer"
             />

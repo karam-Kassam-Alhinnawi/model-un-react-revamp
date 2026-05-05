@@ -24,8 +24,6 @@ import SecurityCouncilBriefing from "./pages/InteractiveModule";
 import AIModel from "./pages/AIModel";
 import Recognitions from "./pages/Recognitions";
 import BioPage from "./pages/BioPage";
-import { PeopleProvider } from './context/PeopleContext';
-import AdminPage from "./pages/AdminPage";
 import AdminGuard from "./pages/AdminGuard";
 
 
@@ -62,7 +60,7 @@ const App = () => (
           <Route path="/learning-path/:pageId" element={<LearningPathDashboard/>} />
           <Route path="/module" element={<SecurityCouncilBriefing/>} />
           <Route path="/model" element={<AIModel/>} />
-          <Route path="/bio" element={<BioPage />} />
+          <Route path="/bio/:personId" element={<BioPage />} />
           // {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
